@@ -1,0 +1,82 @@
+# image processing
+
+install.packages("imager")
+library(imager)
+
+im <- load.image('C:/Users/ayu12/Desktop/dog.png')
+plot(im)
+
+
+im.blurry <- isoblur(im,1)
+plot(im.blurry)
+
+im.xedges <- deriche(im,2,order=2,axis="x") #Edge detector along x-axis
+plot(im.xedges)
+
+
+im.yedges <- deriche(im,2,order=2,axis="y") #Edge detector along y-axis
+plot(im.yedges)
+
+deriche(im,2,order=2,axis="x") %>% deriche(2,order=2,axis="y") %>% plot
+
+
+
+gray.dog <- grayscale(im)
+dim(gray.dog)
+dim(im)
+width(im)
+height(im)
+depth(im)
+spectrum(im)
+
+# individual pixels
+at(im,x=20,y=20,cc=1:3)
+imcol(G(im),300) %>% plot(main="Blue channel along 10th line",type="l")
+
+
+
+# Decision trees and random forest
+#Load the titanic dataset
+
+titanic <- read.csv("C:/Users/ayu12/Desktop/titanic.txt")
+mydata <- titanic
+train <- mydata[1:800,]
+test <- mydata[801:891,]
+head(train)
+head(test)
+install.packages("rpart")
+install.packages("randomForest")
+library(rpart)
+library(randomForest)
+names(train)
+simple.tree <- rpart(Survived ~ Sex + Age + Fare, data = train, method = "class") 
+simple.tree
+windows();plot(simple.tree)
+text(simple.tree)
+
+simple.pred <- predict(simple.tree, test, type = "class")
+simple.pred
+test$Survived
+mean(simple.pred==test$Survived)
+
+train <- train[!is.na(train$Age),]
+test <- test[!is.na(test$Age),]
+
+rf.model <- randomForest(Survived ~ Pclass + Sex + Age + Fare, ntree=20000, data = train)
+# summary(train$Sex)
+# summary(train$Age)
+# summary(train$Fare)
+
+
+dim(test)
+
+rf.pred <- predict(rf.model, test)
+rf.pred <- round(rf.pred,0)
+rf.pred
+
+mean(test$Survived==rf.pred)
+df1 <- data.frame(Passenger = test$PassengerId,
+                  Surv = test$Survived, rf.pred = rf.pred)
+df1
+
+names(train)

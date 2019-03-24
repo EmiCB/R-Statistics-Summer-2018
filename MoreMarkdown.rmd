@@ -1,0 +1,33 @@
+---
+title: Shiny in R Markdown
+author: Me
+output: html_document
+runtime: shiny
+---
+
+#Input
+```{r select-input, echo = FALSE}
+selectInput(inputId = "DropDown", label = "PICK SOMETHING",
+            choices = list("F" = 1,
+                           "and" = 2,
+                           "G" = 3))
+```
+```{r print-select-input, echo = FALSE}
+renderPrint(input$DropDown)
+```
+#Slider
+```{r slider-input}
+sliderInput(inputId = "slider", label = "xd",
+            min = 0, max = 10, value = 5)
+```
+#Checkbox
+```{r checkbox-input}
+checkboxInput(inputId = "checkbox", label = "hi")
+checkboxGroupInput(inputId = "Oof", label = "yikes", choices = list("You", "are", "already", "dead"))
+```
+#Render data
+```{r}
+data(mtcars)
+renderTable(mtcars)
+DT::renderDataTable(mtcars)
+```

@@ -1,0 +1,32 @@
+---
+title: "First Markdown File"
+author: "Brown"
+output: pdf_document
+---
+
+Hi
+
+2+2
+
+any
+
+```{r}
+2+3
+data(iris)
+dim(iris)
+plot(iris$Sepal.Length, iris$Sepal.Width)
+```
+*Italics*
+**Bold**
+#Heading
+
+##Table
+one | two
+--- ---
+three | four
+
+[link](www.google.com)
+
+Footnote[^1]
+[^1]:
+

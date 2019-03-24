@@ -1,0 +1,22 @@
+---
+title: Gummies
+author: Emi
+---
+##Background
+It is expected that you get a 30-40-30 ratio of red, blue, and yellow gummies from a single bag. However, 28-46-26 were pulled out of a bag of 100 gummies. A Chi-Squared test has been performed to see whether the expected ratio is accurate for this set of gummies.
+
+##Data
+```{r, echo = FALSE}
+gummydata <- matrix(c(30, 28, 40, 46, 30, 26), nrow = 2)
+expected = c(30, 40, 30)
+observed = c(28, 46, 26)
+rownames(gummydata) = c("expected", "observed")
+colnames(gummydata) = c("red", "blue", "yellow")
+tbl = as.table(gummydata)
+tbl
+alpha = 0.05
+chisq.test(expected, observed, correct = FALSE)
+```
+
+##Results
+*Loading...*

@@ -1,0 +1,112 @@
+##Regression review
+
+
+set.seed(5)
+x0 <- rep(1,20)
+x0
+x1 <- rnorm(20,0,2)
+x2 <- rnorm(20, 5, 1)
+e <- rnorm(20,0,.5)
+
+X <- cbind(x0,x1,x2)
+X
+t(X)
+y = 2*x1 + 3*x2 + e
+y
+model <- lm(y ~ x1 + x2)
+summary(model)
+model.matrix(model)
+
+A <- matrix(c(2,4,5), nrow=3)
+A
+B <- matrix(c(2,2,3,4), nrow = 1)
+A%*%B
+B%*%A
+
+solve(model.matrix(model))
+
+summary(model)
+X <- model.matrix(model)
+
+solve(t(X)%*%X) %*% t(X) %*% y
+
+############################################
+#Trees review
+titanic <- read.csv("C:/Users//ayu12/Desktop/titanic.txt")
+
+library(rpart)
+
+install.packages("rpart.plot")
+library(rpart.plot)
+
+tree <- rpart(Survived ~ Age + Sex , data = titanic)
+windows();plot(tree)
+text(tree)
+
+rpart.plot(tree)
+
+#####################################################
+####Clustering
+model
+data(iris)
+iris
+kmeans(iris, 3)
+head(iris)
+
+plot(x=iris$Sepal.Length, y=iris$Sepal.Width, 
+     xlab="Sepal Length", ylab="Sepal Width",  main="Sepal Length-Width")
+
+library(ggplot2)
+scatter <- ggplot(data=iris, aes(x = Sepal.Length, y = Sepal.Width)) 
+scatter + geom_point(aes(color=Species, shape=Species)) +
+  xlab("Sepal Length") +  ylab("Sepal Width") +
+  ggtitle("Sepal Length-Width")
+
+
+kmeans(iris[,1:4],3)
+iris$Species\
+
+irisCluster1 <- kmeans(iris[, 3:4], 3, nstart = 20)
+irisCluster$cluster
+data.frame(irisCluster$cluster, iris$Species)
+
+irisCluster2 <- kmeans(iris[, 1:4], 8, nstart = 20)
+data.frame(irisCluster2$cluster, iris$Species)
+
+data(iris)
+iris
+head(iris)
+
+Albert <- c(1,3,2,5,7,4)
+length(Albert)
+kahoot <- strsplit("1 2 3 4 5 4 3 2 1 2 3 4 5 4 3 2 1 2 3 4 5 4 3 2 1 2 3 4 5 4 3 2 1 2 3 4 5 4 3 2 1 2 3 4 5 4 3 2 1 2 3 4 5 4 3 2 1 2 3 4 5 4 3 2", split = " ")
+kahoot
+dput(1 2 3 4 5 4 3 2 1 2 3 4 5 4 3 2 1 2 3 4 5 4 3 2 1 2 3 4 5 4 3 2 1 2 3 4 5 4 3 2 1 2 3 4 5 4 3 2 1 2 3 4 5 4 3 2 1 2 3 4 5 4 3 2)
+
+
+
+Dominick = c(2,3,4,5,4,5,5,4,2,4,2,4,2,4,1,4,5,2,4,2,3,2,1,3,2,4,2,4,4,1,4,5,4,2,4,1,4,3,4,2,2,4,1,5,1,2,3,2,1,3,4,4,1,2,4,1,3,4,2,4,4,2,4,2)
+Grant <- c(2,3,2,1,4,4,2,4,2,4,2,4,2,5,4,4,4,2,3,2,2,1,2,2,4,2,3,2,3,4,3,3,2,2,3,2,
+           4,2,5,2,2,2,4,2,4,4,3,2,3,4,4,2,1,2,2,3,2,2,4,4,2,2,3)
+Rhi <- 
+  c(2,2,4,2,4,4,5,4,4,5,2,4,1,5,2,4,4,4,2,2,4,2,4,2,2,5,4,2,4,4,4,3,4,4,4,4,4,4,2,5,4,1,2,2,1,5,4,2,1,2,4,4,1,1,4,3,2,2,2,4,4,2,1,2)
+Aryan = c(2,3,1,1,4,2,2,3,2,1,2,3,4,2,5,2,2,4,1,2,4,2,4,2,4,1,4,1,3,4,3,2,4,3,3,4,2,2,2,1,2,2,5,3,2,4,5,5,2,4,2,4,5,2,2,3,2,2,5,4,2,2,2,4)
+Akash = c(2, 3, 3, 4, 3, 3, 2, 3, 3, 4, 2, 4, 1, 4, 2, 3, 4, 2, 3, 3, 2, 2, 2, 3, 2, 4, 2, 2, 3, 2, 2, 2, 2, 2, 3, 2, 2, 2, 3, 2, 2, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 3, 4, 3, 3, 4, 3, 4
+)
+Helena <- c(1,4,2,4,4,3,2,2,4,1,4,5,4,2,3,2,2,1,1,2,2,3,1,4,3,4,1,5,2,1,3,4,2,1,1,1,4,2,3,5,2,4,2,4,1,4,2,3,4,1,2,2,2,4,3,3,2,1,2,3,4,3,2,1)
+pomona <- c(1,2,2,4,2,4,1,4,4,5,2,1,1,4,1,2,5,4,2,2,4,1,1,2,4,4,4,5,4,2,4,5,4,4,4,2,5,2,4,5,1,1,1,4,1,5,4,1,2,4,2,4,2,4,4,2,4,2,2,2,5,4,4,4)
+Justin <- c(1,3,2,4,2,4,2,3,4,3,2,3,2,4,2,4,3,2,3,4,3,2,4,4,3,2,5,3,3,1,3,2,2,3,2,4,3,2,3,4,4,3,2,4,2,2,3,2,3,4,2,2,1,4,3,4,3,4,1,3,1,4,3,3)
+Jim <- c(2,4,3,5,3,4,2,4,4,4,2,2,2,4,1,2,5,3,4,2,4,2,1,2,2,4,2,4,4,3,4,4,2,4,4,2,4,2,2,4,2,2,2,2,2,4,2,2,1,2,4,2,2,2,2,1,2,4,3,2,4,2,4,3)
+Zachary <- c(1,2,1,5,2,2,3,2,3,5,2,5,1,5,1,4,2,2,4,4,2,1,5,4,4,3,5,4,1,5,2,1,4,2,1,4,3,4,1,4,4,2,1,5,4,3,1,1,4,4,3,4,2,2,4,5,2,1,4,3,2,3,1,1)
+Grant<- c(2,3,2,1,4,4,2,4,2,4,2,4,2,5,4,4,4,2,3,2,2,1,1,2,2,4,2,3,2,3,4,3,3,2,2,3,2,
+          4,2,5,2,2,2,4,2,4,4,3,2,3,4,4,2,1,2,2,3,2,2,4,4,2,2,3)
+
+
+class<- data.frame(rbind(Dominick, Rhi, Aryan, Akash, Helena, pomona, Justin, Jim, Zachary, Grant))
+class
+length(Grant)
+
+
+##Kmeans based on selected questions:
+
+kmeans(class[,c(20, 23, 17, 36, 37, 41, 42, 18, 35, 45)],3,nstart=20)
